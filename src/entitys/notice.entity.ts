@@ -1,4 +1,4 @@
-import { NoticeStatus } from 'src/notice/models/notice-status.enum'
+import { NoticeStatus } from 'src/modules/notice/models/notice-status.enum'
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()

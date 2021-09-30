@@ -7,16 +7,19 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { CreateNoticeDTO } from 'src/notice/dto/create-notice.dto'
-import { Notice } from 'src/util/entitys/notice.entity'
-import { NoticeStatus } from 'src/notice/models/notice-status.enum'
+import { CreateNoticeDTO } from 'src/modules/notice/dto/create-notice.dto'
+import { Notice } from 'src/entitys/notice.entity'
+import { NoticeStatus } from 'src/modules/notice/models/notice-status.enum'
 import { NoticeService } from './notice.service'
-import { NoticeStatusValidationPipe } from './pipes/notice-status-validation'
+import { NoticeStatusValidationPipe } from '../../middlewares/pipes/notice-status-validation'
+import { AuthGuard } from '@nestjs/passport'
 
 @Controller('notice')
+@UseGuards(AuthGuard())
 export class NoticeController {
   constructor(private noticeService: NoticeService) {}
 

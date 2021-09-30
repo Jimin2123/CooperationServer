@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { CreateNoticeDTO } from 'src/notice/dto/create-notice.dto'
-import { Notice } from 'src/util/entitys/notice.entity'
-import { NoticeStatus } from 'src/notice/models/notice-status.enum'
+import { CreateNoticeDTO } from 'src/modules/notice/dto/create-notice.dto'
+import { Notice } from 'src/entitys/notice.entity'
+import { NoticeStatus } from 'src/modules/notice/models/notice-status.enum'
 import { NoticeRepository } from './notice.repository'
 
 @Injectable()

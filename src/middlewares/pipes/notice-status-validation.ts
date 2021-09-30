@@ -1,5 +1,5 @@
 import { ArgumentMetadata, BadRequestException, PipeTransform } from '@nestjs/common'
-import { NoticeStatus } from '../models/notice-status.enum'
+import { NoticeStatus } from '../../modules/notice/models/notice-status.enum'
 
 export class NoticeStatusValidationPipe implements PipeTransform {
   readonly StatusOption = [NoticeStatus.PRIVATE, NoticeStatus.PUBLIC]

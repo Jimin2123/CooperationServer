@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common'
-import { CreateNoticeDTO } from 'src/notice/dto/create-notice.dto'
-import { Notice } from 'src/util/entitys/notice.entity'
-import { NoticeStatus } from 'src/notice/models/notice-status.enum'
+import { CreateNoticeDTO } from 'src/modules/notice/dto/create-notice.dto'
+import { Notice } from 'src/entitys/notice.entity'
+import { NoticeStatus } from 'src/modules/notice/models/notice-status.enum'
 import { EntityRepository, Repository } from 'typeorm'
 
 // 데이터베이스 관련 일 (insert, Find, delete.. 등등)
