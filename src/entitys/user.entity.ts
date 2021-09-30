@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Notice } from './notice.entity'
 
 @Entity()
 @Unique(['username'])
@@ -11,4 +12,7 @@ export class User extends BaseEntity {
 
   @Column()
   password: string
+
+  @OneToMany(type => Notice, notice => notice.user, { eager: true })
+  notice: Notice[]
 }

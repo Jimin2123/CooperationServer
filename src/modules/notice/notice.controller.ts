@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   ParseIntPipe,
   Patch,
@@ -17,16 +18,21 @@ import { NoticeStatus } from 'src/modules/notice/models/notice-status.enum'
 import { NoticeService } from './notice.service'
 import { NoticeStatusValidationPipe } from '../../middlewares/pipes/notice-status-validation'
 import { AuthGuard } from '@nestjs/passport'
+import { GetUser } from 'src/decorators'
+import { User } from 'src/entitys/user.entity'
 
 @Controller('notice')
 @UseGuards(AuthGuard())
 export class NoticeController {
+  private logger = new Logger('NoticeController')
   constructor(private noticeService: NoticeService) {}
 
   @Get()
-  getAllNotice(): Promise<Notice[]> {
-    return this.noticeService.getAllNotice()
+  getAllNotice(@GetUser() user: User): Promise<Notice[]> {
+    this.logger.verbose(`User ${user.username} trying to get all notice`)
+    return this.noticeService.getAllNotice(user)
   }
+
   @Get(':id')
   getNoticeById(@Param('id') id: number): Promise<Notice> {
     return this.noticeService.getNoticeById(id)
@@ -34,8 +40,8 @@ export class NoticeController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  createNotice(@Body() createnoticeDto: CreateNoticeDTO): Promise<Notice> {
-    return this.noticeService.createNotice(createnoticeDto)
+  createNotice(@Body() createnoticeDto: CreateNoticeDTO, @GetUser() user: User): Promise<Notice> {
+    return this.noticeService.createNotice(createnoticeDto, user)
   }
 
   @Delete('/:id')
